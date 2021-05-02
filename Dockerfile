@@ -44,7 +44,7 @@ COPY --from=build /home/node/xen-orchestra /xen-orchestra
 
 RUN mkdir -p /etc/xo-server /etc/confd/{conf.d,templates}
 
-RUN curl -Lo /confd https://github.com/kelseyhightower/confd/releases/download/v0.16.0/confd-0.16.0-linux-amd64 && \
+RUN curl -Lo /confd https://github.com/kelseyhightower/confd/releases/download/v0.16.0/confd-0.16.0-${TARGETOS}-${TARGETARCH} && \
     chmod +x /confd
 
 COPY files/config.toml.tmpl /etc/confd/templates/
