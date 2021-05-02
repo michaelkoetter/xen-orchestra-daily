@@ -1,9 +1,9 @@
 # Xen Orchestra Daily Image
-[![Build Docker Image](https://github.com/michaelkoetter/xen-orchestra-daily/actions/workflows/build-image.yml/badge.svg)](https://github.com/michaelkoetter/xen-orchestra-daily/actions/workflows/build-image.yml) 
-![arch-amd64](https://img.shields.io/badge/arch-amd64-blue)
-![arch-arm64](https://img.shields.io/badge/arch-arm64-blue)
+[![Build Docker Image](https://github.com/michaelkoetter/xen-orchestra-daily/actions/workflows/build-image.yml/badge.svg)](https://hub.docker.com/r/mkoetter/xen-orchestra) 
+[![arch-amd64](https://img.shields.io/badge/arch-amd64-blue)](https://hub.docker.com/r/mkoetter/xen-orchestra)
+[![arch-arm64](https://img.shields.io/badge/arch-arm64-blue)](https://hub.docker.com/r/mkoetter/xen-orchestra)
 
-This image is built automatically from the [Xen Orchestra](https://github.com/vatesfr/xen-orchestra) master branch.
+[This image](https://hub.docker.com/r/mkoetter/xen-orchestra) is built automatically from the [Xen Orchestra](https://github.com/vatesfr/xen-orchestra) master branch.
 
 ## Usage
 
