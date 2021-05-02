@@ -1,0 +1,7 @@
+[template]
+src = "config.toml.tmpl"
+dest = "/etc/xo-server/config.toml"
+keys = [
+    "/xo/http/port",
+    "/xo/redis/uri",
+]

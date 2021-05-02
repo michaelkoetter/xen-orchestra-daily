@@ -1,0 +1,21 @@
+version: '3'
+services:
+  xen-orchestra:
+    restart: unless-stopped
+    image: mkoetter/xen-orchestra:latest
+    container_name: xen-orchestra
+    ports:
+      - "80:80"
+    depends_on:
+      - redis
+    cap_add:
+      - SYS_ADMIN
+  redis:
+    restart: unless-stopped
+    container_name: xen-orchestra-redis
+    image: redis:6
+    command: redis-server --appendonly yes
+    volumes:
+        - redis-data:/data
+volumes:
+  redis-data:
