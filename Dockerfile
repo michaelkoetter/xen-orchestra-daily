@@ -1,6 +1,9 @@
 #############################################################################
 FROM node:14-buster AS build
 
+ARG TARGETOS
+ARG TARGETARCH
+
 RUN apt-get update && apt-get install -y build-essential libpng-dev git python-minimal
 
 WORKDIR /home/node
@@ -32,6 +35,9 @@ RUN cd /home/node/xen-orchestra/packages/xo-server/node_modules && \
 
 #############################################################################
 FROM node:14-buster
+
+ARG TARGETOS
+ARG TARGETARCH
 
 ENV XO_HTTP_PORT=80
 ENV XO_REDIS_URI=redis://redis:6379/0
