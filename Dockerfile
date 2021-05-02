@@ -11,6 +11,7 @@ WORKDIR /home/node
 RUN git clone -b master --depth 1 https://github.com/vatesfr/xen-orchestra/ && \
     cd /home/node/xen-orchestra && \
     rm -rf .git && \
+    yarn config set network-timeout 60000 -g && \
     yarn && \
     yarn build
 
