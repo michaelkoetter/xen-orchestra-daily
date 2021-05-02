@@ -18,8 +18,9 @@ jobs:
         uses: crazy-max/ghaction-docker-meta@v2
         with:
           images: mkoetter/xen-orchestra
+          flavor: |
+            latest=true
           tags: |
-            type=edge
             type=schedule,pattern={{date 'YYYYMMDD'}}
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
