@@ -23,6 +23,7 @@ RUN cd /home/node/xen-orchestra/packages/xo-server/node_modules && \
         ../../xo-server-auth-saml \
         ../../xo-server-backup-reports \
         ../../xo-server-load-balancer \
+        ../../xo-server-netbox \
         ../../xo-server-perf-alert \
         ../../xo-server-sdn-controller \
         ../../xo-server-transport-email \
