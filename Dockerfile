@@ -38,6 +38,8 @@ RUN cd /home/node/xen-orchestra/packages/xo-server/node_modules && \
 #############################################################################
 FROM node:14-buster
 
+MAINTAINER Michael Kötter <michael@m-koetter.de>
+
 ARG TARGETOS
 ARG TARGETARCH
 
