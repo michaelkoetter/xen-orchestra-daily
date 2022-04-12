@@ -18,14 +18,12 @@ jobs:
       - name: Get latest xen-orchestra commit hash
         id: xo_commit
         run: |
-          git ls-remote -q https://github.com/vatesfr/xen-orchestra.git master | awk '{print $1}'
+          echo "XO_COMMIT=$(git ls-remote -q https://github.com/vatesfr/xen-orchestra.git master | awk '{print $1}')" >> $GITHUB_ENV
 
       - name: Get xo-server version
         id: xo_version
-        env:
-          XO_COMMIT: ${{ steps.xo_commit.outputs.stdout }}
         run: |
-          curl -s https://raw.githubusercontent.com/vatesfr/xen-orchestra/${XO_COMMIT}/packages/xo-server/package.json | jq -r .version
+          echo "XO_VERSION=$(curl -s https://raw.githubusercontent.com/vatesfr/xen-orchestra/${XO_COMMIT}/packages/xo-server/package.json | jq -r .version)" >> $GITHUB_ENV
 
       - name: Docker meta
         id: meta
@@ -37,7 +35,7 @@ jobs:
           tags: |
             type=edge
             type=schedule,pattern={{date 'YYYYMMDD'}}
-            type=raw,v${{ steps.xo_version.outputs.stdout }}
+            type=raw,v${{ env.XO_VERSION }}
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1.2.0
@@ -57,8 +55,8 @@ jobs:
         with:
           context: .
           build-args: |
-            XO_COMMIT=${{ steps.xo_commit.outputs.stdout }}
-            XO_VERSION=${{ steps.xo_version.outputs.stdout }}
+            XO_COMMIT=${{ env.XO_COMMIT }}
+            XO_VERSION=${{ env.XO_VERSION }}
           push: true
           platforms: linux/amd64,linux/arm64
           tags: ${{ steps.meta.outputs.tags }}
