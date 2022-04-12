@@ -23,7 +23,7 @@ jobs:
       - name: Get xo-server version
         id: xo_version
         env:
-          XO_COMMIT: ${{ steps.xo_version.outputs.stdout }}
+          XO_COMMIT: ${{ steps.xo_commit.outputs.stdout }}
         run: |
           curl -s https://raw.githubusercontent.com/vatesfr/xen-orchestra/${XO_COMMIT}/packages/xo-server/package.json | jq -r .version
 
