@@ -3,13 +3,16 @@ FROM node:14-buster AS build
 
 ARG TARGETOS
 ARG TARGETARCH
+ARG XO_COMMIT
+ARG XO_VERSION
 
 RUN apt-get update && apt-get install -y build-essential libpng-dev git python-minimal
 
 WORKDIR /home/node
 
-RUN git clone -b master --depth 1 https://github.com/vatesfr/xen-orchestra/ && \
+RUN git clone --depth 1 https://github.com/vatesfr/xen-orchestra/ && \
     cd /home/node/xen-orchestra && \
+    git reset --hard ${XO_COMMIT} && \
     rm -rf .git && \
     yarn config set network-timeout 60000 -g && \
     yarn && \

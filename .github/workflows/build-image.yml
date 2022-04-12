@@ -15,10 +15,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2.4.0
 
-      - name: Get xo-server version
-        id: xo-version
+      - name: Get latest xen-orchestra commit hash
+        id: xo_commit
         run: |
-          echo "XO_VERSION=$(cat ./packages/xo-server/package.json | jq -r .version)" >> $GITHUB_ENV
+          git ls-remote -q https://github.com/vatesfr/xen-orchestra.git master | awk '{print $1}'
+
+      - name: Get xo-server version
+        id: xo_version
+        run: |
+          curl -s https://raw.githubusercontent.com/vatesfr/xen-orchestra/${{ steps.xo_commit.outputs.stdout }}/packages/xo-server/package.json | jq -r .version
 
       - name: Docker meta
         id: meta
@@ -30,8 +35,8 @@ jobs:
           tags: |
             type=edge
             type=schedule,pattern={{date 'YYYYMMDD'}}
-            type=raw,v${{ env.XO_VERSION }}
-      
+            type=raw,v${{ steps.xo_version.outputs.stdout }}
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1.2.0
       
@@ -49,6 +54,9 @@ jobs:
         uses: docker/build-push-action@v2.8.0
         with:
           context: .
+          build-args: |
+            XO_COMMIT=${{ steps.xo_commit.outputs.stdout }}
+            XO_VERSION=${{ steps.xo_version.outputs.stdout }}
           push: true
           platforms: linux/amd64,linux/arm64
           tags: ${{ steps.meta.outputs.tags }}
