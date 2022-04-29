@@ -27,7 +27,7 @@ jobs:
 
       - name: Docker meta
         id: meta
-        uses: docker/metadata-action@v3.7.0
+        uses: docker/metadata-action@v3.8.0
         with:
           images: mkoetter/xen-orchestra
           flavor: |
