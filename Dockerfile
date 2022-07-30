@@ -1,5 +1,5 @@
 #############################################################################
-FROM node:14-buster AS build
+FROM node:16-buster AS build
 
 ARG TARGETOS
 ARG TARGETARCH
@@ -39,7 +39,7 @@ RUN cd /home/node/xen-orchestra/packages/xo-server/node_modules && \
         .
 
 #############################################################################
-FROM node:14-buster
+FROM node:16-buster
 
 MAINTAINER Michael Kötter <michael@m-koetter.de>
 
