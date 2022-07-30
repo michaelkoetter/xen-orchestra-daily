@@ -1,5 +1,6 @@
 # Xen Orchestra Daily Image
 [![Build Docker Image](https://github.com/michaelkoetter/xen-orchestra-daily/actions/workflows/build-image.yml/badge.svg)](https://hub.docker.com/r/mkoetter/xen-orchestra) 
+[![image-version](https://img.shields.io/docker/v/mkoetter/xen-orchestra)](https://hub.docker.com/r/mkoetter/xen-orchestra)
 [![arch-amd64](https://img.shields.io/badge/arch-amd64-blue)](https://hub.docker.com/r/mkoetter/xen-orchestra)
 [![arch-arm64](https://img.shields.io/badge/arch-arm64-blue)](https://hub.docker.com/r/mkoetter/xen-orchestra)
 
