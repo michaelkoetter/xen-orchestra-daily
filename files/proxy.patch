@@ -1,0 +1,21 @@
+diff --git a/@xen-orchestra/proxy/app/mixins/appliance.mjs b/@xen-orchestra/proxy/app/mixins/appliance.mjs
+index 3c7cb6823..f6aad05ac 100644
+--- a/@xen-orchestra/proxy/app/mixins/appliance.mjs
++++ b/@xen-orchestra/proxy/app/mixins/appliance.mjs
+@@ -153,10 +153,11 @@ export default class Appliance {
+ 
+   // A proxy can be bound to a unique license
+   getSelfLicense() {
+-    return Disposable.use(getUpdater(), async updater => {
+-      const licenses = await updater.call('getSelfLicenses')
+-      const now = Date.now()
+-      return licenses.find(({ expires }) => expires === undefined || expires > now)
+-    })
++    // return Disposable.use(getUpdater(), async updater => {
++    //   const licenses = await updater.call('getSelfLicenses')
++    //   const now = Date.now()
++    //   return licenses.find(({ expires }) => expires === undefined || expires > now)
++    // })
++    return true
+   }
+ }
