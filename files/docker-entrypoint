@@ -1,0 +1,17 @@
+#!/bin/bash
+
+/confd -onetime -backend env
+
+if [ "$XO_PROXY_ENABLED" == "1" ]
+then
+    if [ -z $XO_PROXY_AUTHENTICATION_TOKEN ]
+    then
+        echo "*** FATAL: XO_PROXY_AUTHENTICATION_TOKEN is not set!"
+        exit 1
+    fi
+    echo "*** Starting XenOrchestra Proxy ..."
+    exec /xen-orchestra/@xen-orchestra/proxy/index.mjs $@
+else 
+    echo "*** Starting XenOrchestra Server ..."
+    exec /xen-orchestra/packages/xo-server/dist/cli.mjs $@
+fi

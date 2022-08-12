@@ -1,0 +1,6 @@
+[template]
+src = "xo-proxy-config.toml.tmpl"
+dest = "/etc/xo-proxy/config.toml"
+keys = [
+    "/xo/proxy/authentication/token",
+]
