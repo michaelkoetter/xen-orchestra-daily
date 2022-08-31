@@ -66,3 +66,11 @@ jobs:
       
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
+
+      - name: Docker Hub Description
+        uses: peter-evans/dockerhub-description@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+          repository: mkoetter/xen-orchestra
+          short-description: ${{ github.event.repository.description }}
