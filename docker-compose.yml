@@ -4,13 +4,16 @@ services:
     restart: unless-stopped
     image: mkoetter/xen-orchestra:latest
     container_name: xen-orchestra
-    privileged: true
+    # This might cause startup issues, see: https://github.com/michaelkoetter/xen-orchestra-daily/issues/40
+    #privileged: true
+    cap_add:
+      - SYS_ADMIN
     ports:
       - "8080:8080"
     depends_on:
       - redis
     environment:
-      - XO_HTTP_PORT=8080
+      - XO_SERVER_HTTP_PORT=8080
   redis:
     restart: unless-stopped
     container_name: xen-orchestra-redis
