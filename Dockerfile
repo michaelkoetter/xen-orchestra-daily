@@ -1,12 +1,17 @@
 #############################################################################
-FROM node:16-buster AS build
+FROM node:16-bullseye AS build
 
 ARG TARGETOS
 ARG TARGETARCH
 ARG XO_COMMIT
 ARG XO_VERSION
 
-RUN apt-get update && apt-get install -y build-essential libpng-dev git python-minimal
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    git \
+    libpng-dev \
+    python3-minimal \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /home/node
 
@@ -42,7 +47,7 @@ RUN cd /home/node/xen-orchestra/packages/xo-server/node_modules && \
         .
 
 #############################################################################
-FROM node:16-buster
+FROM node:16-bullseye
 
 MAINTAINER Michael Kötter <michael@m-koetter.de>
 
@@ -58,19 +63,14 @@ ENV XO_PROXY_AUTHENTICATION_TOKEN=
 ENV NODE_ENV=production
 ENV XOA_PLAN=5
 
-RUN apt-get update && apt-get install -y libvhdi-utils lvm2 cifs-utils nfs-common
+RUN apt-get update && apt-get install -y \
+    cifs-utils \
+    gettext-base \
+    libvhdi-utils \
+    lvm2 \    
+    nfs-common \    
+    && rm -rf /var/lib/apt/lists/*
 
 COPY --from=build /home/node/xen-orchestra /xen-orchestra
-
-RUN mkdir -p /etc/xo-server /etc/xo-proxy /etc/confd/{conf.d,templates}
-
-RUN curl -Lo /confd https://github.com/kelseyhightower/confd/releases/download/v0.16.0/confd-0.16.0-${TARGETOS}-${TARGETARCH} && \
-    chmod +x /confd
-
-COPY files/xo-server-config.toml /etc/confd/conf.d/
-COPY files/xo-server-config.toml.tmpl /etc/confd/templates/
-COPY files/xo-proxy-config.toml /etc/confd/conf.d/
-COPY files/xo-proxy-config.toml.tmpl /etc/confd/templates/
 COPY files/docker-entrypoint /docker-entrypoint
-
 ENTRYPOINT [ "/docker-entrypoint" ]

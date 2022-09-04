@@ -1,6 +1,19 @@
 #!/bin/bash
 
-/confd -onetime -backend env
+mkdir -p /etc/{xo-server,xo-proxy}
+
+(envsubst <<EOF
+[[http.listen]]
+port = $XO_SERVER_HTTP_PORT
+[redis]
+uri = '$XO_SERVER_REDIS_URI'
+EOF
+) > /etc/xo-server/config.toml
+
+(envsubst <<EOF
+authenticationToken = '$XO_PROXY_AUTHENTICATION_TOKEN'
+EOF
+) > /etc/xo-proxy/config.toml
 
 if [ "$XO_PROXY_ENABLED" == "1" ]
 then
