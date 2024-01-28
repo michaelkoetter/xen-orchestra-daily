@@ -38,6 +38,8 @@ RUN cd /home/node/xen-orchestra/packages/xo-server/node_modules && \
         ../../xo-server-netbox \
         ../../xo-server-perf-alert \
         ../../xo-server-sdn-controller \
+        ../../xo-server-test-plugin \
+        ../../xo-server-test \
         ../../xo-server-transport-email \
         ../../xo-server-transport-icinga2 \
         ../../xo-server-transport-nagios \
@@ -68,8 +70,9 @@ RUN apt-get update && apt-get install -y \
     cifs-utils \
     gettext-base \
     libvhdi-utils \
-    lvm2 \    
-    nfs-common \    
+    lvm2 \
+    nfs-common \
+    xenstore-utils \
     && rm -rf /var/lib/apt/lists/*
 
 COPY --from=build /home/node/xen-orchestra /xen-orchestra
