@@ -3,6 +3,7 @@ services:
   xen-orchestra:
     restart: unless-stopped
     image: mkoetter/xen-orchestra:latest
+    platform: linux/amd64
     container_name: xen-orchestra
     # This might cause startup issues, see: https://github.com/michaelkoetter/xen-orchestra-daily/issues/40
     #privileged: true
@@ -17,7 +18,8 @@ services:
   redis:
     restart: unless-stopped
     container_name: xen-orchestra-redis
-    image: redis:6
+    image: redis:7
+    platform: linux/amd64
     command: redis-server --appendonly yes
     volumes:
         - redis-data:/data
