@@ -1,5 +1,5 @@
 #############################################################################
-FROM node:16-bullseye AS build
+FROM node:20-bookworm AS build
 
 ARG TARGETOS
 ARG TARGETARCH
@@ -31,6 +31,7 @@ RUN cd /home/node/xen-orchestra/packages/xo-server/node_modules && \
         ../../xo-server-auth-github \
         ../../xo-server-auth-google \
         ../../xo-server-auth-ldap \
+        ../../xo-server-auth-oidc \
         ../../xo-server-auth-saml \
         ../../xo-server-backup-reports \
         ../../xo-server-load-balancer \
@@ -47,7 +48,7 @@ RUN cd /home/node/xen-orchestra/packages/xo-server/node_modules && \
         .
 
 #############################################################################
-FROM node:16-bullseye
+FROM node:20-bookworm
 
 MAINTAINER Michael Kötter <michael@m-koetter.de>
 
