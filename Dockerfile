@@ -1,5 +1,5 @@
 #############################################################################
-FROM node:20-bookworm AS build
+FROM node:18-bookworm AS build
 
 ARG TARGETOS
 ARG TARGETARCH
@@ -50,7 +50,7 @@ RUN cd /home/node/xen-orchestra/packages/xo-server/node_modules && \
         .
 
 #############################################################################
-FROM node:20-bookworm
+FROM node:18-bookworm
 
 MAINTAINER Michael Kötter <michael@m-koetter.de>
 
