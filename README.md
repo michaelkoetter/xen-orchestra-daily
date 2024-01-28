@@ -3,7 +3,6 @@
 [![Build Docker Image](https://github.com/michaelkoetter/xen-orchestra-daily/actions/workflows/build-image.yml/badge.svg)](https://github.com/michaelkoetter/xen-orchestra-daily/actions/workflows/build-image.yml)
 ![image-version](https://img.shields.io/docker/v/mkoetter/xen-orchestra)
 ![arch-amd64](https://img.shields.io/badge/arch-amd64-blue)
-![arch-arm64](https://img.shields.io/badge/arch-arm64-blue)
 
 This image is built automatically from the [Xen Orchestra](https://github.com/vatesfr/xen-orchestra) master branch.
 
