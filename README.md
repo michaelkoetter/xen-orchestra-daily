@@ -25,7 +25,7 @@ The Redis URI for Xen Orchestra persistence.
 
 Default: `redis://redis:6379/0`
 
-## Xen Orchestry Proxy
+## Xen Orchestra Backup Proxy
 
 You can optionally start the container in [Backup Proxy](https://xen-orchestra.com/docs/proxy.html) mode. 
 To do so, the container *must* be run in a VM that can be discovered by Xen Orchestra 
