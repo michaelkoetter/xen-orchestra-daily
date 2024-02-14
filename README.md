@@ -19,12 +19,6 @@ date tag (eg. `20210503`) and update only as required.
 
 ### Environment Variables
 
-#### `XO_SERVER_HTTP_PORT`
-
-The HTTP port that Xen Orchestra will listen on.
-
-Default: `80`
-
 #### `XO_SERVER_REDIS_URI`
 
 The Redis URI for Xen Orchestra persistence.

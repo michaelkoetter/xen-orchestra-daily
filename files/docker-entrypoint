@@ -4,7 +4,7 @@ mkdir -p /etc/{xo-server,xo-proxy}
 
 (envsubst <<EOF
 [[http.listen]]
-port = $XO_SERVER_HTTP_PORT
+port = 80
 [redis]
 uri = '$XO_SERVER_REDIS_URI'
 EOF

@@ -59,7 +59,6 @@ ARG TARGETARCH
 ARG XO_COMMIT
 ARG XO_VERSION
 
-ENV XO_SERVER_HTTP_PORT=80
 ENV XO_SERVER_REDIS_URI=redis://redis:6379/0
 ENV XO_PROXY_ENABLED=0
 ENV XO_PROXY_AUTHENTICATION_TOKEN=
@@ -77,4 +76,6 @@ RUN apt-get update && apt-get install -y \
 
 COPY --from=build /home/node/xen-orchestra /xen-orchestra
 COPY files/docker-entrypoint /docker-entrypoint
+EXPOSE 80/tcp
+EXPOSE 443/tcp
 ENTRYPOINT [ "/docker-entrypoint" ]
